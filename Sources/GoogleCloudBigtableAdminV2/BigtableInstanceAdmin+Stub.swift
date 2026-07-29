@@ -25,114 +25,74 @@ import GoogleRpc
 import GoogleCloudGax
 
 extension Clients {
-  protocol BigtableTableAdminStub {
-    func createTable(
-      request: CreateTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table
-
-    func createTableFromSnapshot(
-      request: CreateTableFromSnapshotRequest, options: GoogleCloudGax.RequestOptions
+  protocol BigtableInstanceAdminStub {
+    func createInstance(
+      request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func listTables(
-      request: ListTablesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListTablesResponse
+    func getInstance(
+      request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance
 
-    func getTable(
-      request: GetTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table
+    func listInstances(
+      request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse
 
-    func updateTable(
-      request: UpdateTableRequest, options: GoogleCloudGax.RequestOptions
+    func updateInstance(
+      request: Instance, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance
+
+    func partialUpdateInstance(
+      request: PartialUpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func deleteTable(
-      request: DeleteTableRequest, options: GoogleCloudGax.RequestOptions
+    func deleteInstance(
+      request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
-    func undeleteTable(
-      request: UndeleteTableRequest, options: GoogleCloudGax.RequestOptions
+    func createCluster(
+      request: CreateClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func createAuthorizedView(
-      request: CreateAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
+    func getCluster(
+      request: GetClusterRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Cluster
+
+    func listClusters(
+      request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse
+
+    func updateCluster(
+      request: Cluster, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func listAuthorizedViews(
-      request: ListAuthorizedViewsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListAuthorizedViewsResponse
-
-    func getAuthorizedView(
-      request: GetAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.AuthorizedView
-
-    func updateAuthorizedView(
-      request: UpdateAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
+    func partialUpdateCluster(
+      request: PartialUpdateClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func deleteAuthorizedView(
-      request: DeleteAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
+    func deleteCluster(
+      request: DeleteClusterRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
-    func modifyColumnFamilies(
-      request: ModifyColumnFamiliesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table
+    func createAppProfile(
+      request: CreateAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile
 
-    func dropRowRange(
-      request: DropRowRangeRequest, options: GoogleCloudGax.RequestOptions
+    func getAppProfile(
+      request: GetAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile
+
+    func listAppProfiles(
+      request: ListAppProfilesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse
+
+    func updateAppProfile(
+      request: UpdateAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteAppProfile(
+      request: DeleteAppProfileRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
-
-    func generateConsistencyToken(
-      request: GenerateConsistencyTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.GenerateConsistencyTokenResponse
-
-    func checkConsistency(
-      request: CheckConsistencyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.CheckConsistencyResponse
-
-    func snapshotTable(
-      request: SnapshotTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation
-
-    func getSnapshot(
-      request: GetSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Snapshot
-
-    func listSnapshots(
-      request: ListSnapshotsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListSnapshotsResponse
-
-    func deleteSnapshot(
-      request: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws
-
-    func createBackup(
-      request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation
-
-    func getBackup(
-      request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Backup
-
-    func updateBackup(
-      request: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Backup
-
-    func deleteBackup(
-      request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws
-
-    func listBackups(
-      request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListBackupsResponse
-
-    func restoreTable(
-      request: RestoreTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation
-
-    func copyBackup(
-      request: CopyBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation
 
     func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
@@ -146,24 +106,48 @@ extension Clients {
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
-    func createSchemaBundle(
-      request: CreateSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
+    func listHotTablets(
+      request: ListHotTabletsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse
+
+    func createLogicalView(
+      request: CreateLogicalViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func updateSchemaBundle(
-      request: UpdateSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
+    func getLogicalView(
+      request: GetLogicalViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.LogicalView
+
+    func listLogicalViews(
+      request: ListLogicalViewsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse
+
+    func updateLogicalView(
+      request: UpdateLogicalViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func getSchemaBundle(
-      request: GetSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.SchemaBundle
+    func deleteLogicalView(
+      request: DeleteLogicalViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
 
-    func listSchemaBundles(
-      request: ListSchemaBundlesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListSchemaBundlesResponse
+    func createMaterializedView(
+      request: CreateMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
 
-    func deleteSchemaBundle(
-      request: DeleteSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
+    func getMaterializedView(
+      request: GetMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView
+
+    func listMaterializedViews(
+      request: ListMaterializedViewsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
+
+    func updateMaterializedView(
+      request: UpdateMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteMaterializedView(
+      request: DeleteMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws
 
     func listOperations(
@@ -183,7 +167,7 @@ extension Clients {
     ) async throws
   }
 
-  class BigtableTableAdminTransport: BigtableTableAdminStub {
+  class BigtableInstanceAdminTransport: BigtableInstanceAdminStub {
     let inner: GoogleCloudGax.HTTPClient
 
     public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -191,36 +175,14 @@ extension Clients {
         from: options, withDefaultEndpoint: "https://bigtableadmin.googleapis.com")
     }
 
-    public func createTable(
-      request: CreateTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/tables"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Table.self, from: data)
-    }
-
-    public func createTableFromSnapshot(
-      request: CreateTableFromSnapshotRequest, options: GoogleCloudGax.RequestOptions
+    public func createInstance(
+      request: CreateInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
         }
-        return "/v2/\(pathVariable0)/tables:createFromSnapshot"
+        return "/v2/\(pathVariable0)/instances"
       }()
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
@@ -235,82 +197,51 @@ extension Clients {
         GoogleLongRunning.Operation.self, from: data)
     }
 
-    public func listTables(
-      request: ListTablesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListTablesResponse {
+    public func getInstance(
+      request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.Instance.self, from: data)
+    }
+
+    public func listInstances(
+      request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
         }
-        return "/v2/\(pathVariable0)/tables"
+        return "/v2/\(pathVariable0)/instances"
       }()
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
       let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
-      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       var req = try await self.inner.Request(path: path, query: query)
       req.httpMethod = "GET"
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.ListTablesResponse.self, from: data)
+        GoogleCloudBigtableAdminV2.ListInstancesResponse.self, from: data)
     }
 
-    public func getTable(
-      request: GetTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Table.self, from: data)
-    }
-
-    public func updateTable(
-      request: UpdateTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.table.map({ $0.name }), !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.table.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      query.append(contentsOf: try encoder.encode(request.ignoreWarnings, prefix: "ignoreWarnings"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "PATCH"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.table {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func deleteTable(
-      request: DeleteTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws {
+    public func updateInstance(
+      request: Instance, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -321,114 +252,271 @@ extension Clients {
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
       var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "DELETE"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      _ = try await self.inner.rpc(for: req).get()
-    }
-
-    public func undeleteTable(
-      request: UndeleteTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):undelete"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
+      req.httpMethod = "PUT"
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
+        GoogleCloudBigtableAdminV2.Instance.self, from: data)
     }
 
-    public func createAuthorizedView(
-      request: CreateAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
+    public func partialUpdateInstance(
+      request: PartialUpdateInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/authorizedViews"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(
-        contentsOf: try encoder.encode(request.authorizedViewId, prefix: "authorizedViewId"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.authorizedView {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func listAuthorizedViews(
-      request: ListAuthorizedViewsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListAuthorizedViewsResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/authorizedViews"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.ListAuthorizedViewsResponse.self, from: data)
-    }
-
-    public func getAuthorizedView(
-      request: GetAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.AuthorizedView {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.AuthorizedView.self, from: data)
-    }
-
-    public func updateAuthorizedView(
-      request: UpdateAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.authorizedView.map({ $0.name }), !pathVariable0.isEmpty
-        else {
+        guard let pathVariable0 = request.instance.map({ $0.name }), !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding(
-            "'request.authorized_view.name' is not set or is empty")
+            "'request.instance.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "PATCH"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.instance {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func deleteInstance(
+      request: DeleteInstanceRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "DELETE"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      _ = try await self.inner.rpc(for: req).get()
+    }
+
+    public func createCluster(
+      request: CreateClusterRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/clusters"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.clusterId, prefix: "clusterId"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "POST"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.cluster {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func getCluster(
+      request: GetClusterRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.Cluster {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.Cluster.self, from: data)
+    }
+
+    public func listClusters(
+      request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/clusters"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.ListClustersResponse.self, from: data)
+    }
+
+    public func updateCluster(
+      request: Cluster, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "PUT"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      req.httpBody = try JSONEncoder().encode(request)
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func partialUpdateCluster(
+      request: PartialUpdateClusterRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.cluster.map({ $0.name }), !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.cluster.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "PATCH"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.cluster {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func deleteCluster(
+      request: DeleteClusterRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "DELETE"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      _ = try await self.inner.rpc(for: req).get()
+    }
+
+    public func createAppProfile(
+      request: CreateAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/appProfiles"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.appProfileId, prefix: "appProfileId"))
+      query.append(contentsOf: try encoder.encode(request.ignoreWarnings, prefix: "ignoreWarnings"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "POST"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.appProfile {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.AppProfile.self, from: data)
+    }
+
+    public func getAppProfile(
+      request: GetAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.AppProfile.self, from: data)
+    }
+
+    public func listAppProfiles(
+      request: ListAppProfilesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/appProfiles"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.ListAppProfilesResponse.self, from: data)
+    }
+
+    public func updateAppProfile(
+      request: UpdateAppProfileRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.appProfile.map({ $0.name }), !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding(
+            "'request.app_profile.name' is not set or is empty")
         }
         return "/v2/\(pathVariable0)"
       }()
@@ -441,7 +529,7 @@ extension Clients {
       var req = try await self.inner.Request(path: path, query: query)
       req.httpMethod = "PATCH"
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.authorizedView {
+      if let body = request.appProfile {
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.httpBody = try JSONEncoder().encode(body)
       }
@@ -450,8 +538,8 @@ extension Clients {
         GoogleLongRunning.Operation.self, from: data)
     }
 
-    public func deleteAuthorizedView(
-      request: DeleteAuthorizedViewRequest, options: GoogleCloudGax.RequestOptions
+    public func deleteAppProfile(
+      request: DeleteAppProfileRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
@@ -463,339 +551,11 @@ extension Clients {
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
       let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
+      query.append(contentsOf: try encoder.encode(request.ignoreWarnings, prefix: "ignoreWarnings"))
       var req = try await self.inner.Request(path: path, query: query)
       req.httpMethod = "DELETE"
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       _ = try await self.inner.rpc(for: req).get()
-    }
-
-    public func modifyColumnFamilies(
-      request: ModifyColumnFamiliesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Table {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):modifyColumnFamilies"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Table.self, from: data)
-    }
-
-    public func dropRowRange(
-      request: DropRowRangeRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):dropRowRange"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      _ = try await self.inner.rpc(for: req).get()
-    }
-
-    public func generateConsistencyToken(
-      request: GenerateConsistencyTokenRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.GenerateConsistencyTokenResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):generateConsistencyToken"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.GenerateConsistencyTokenResponse.self, from: data)
-    }
-
-    public func checkConsistency(
-      request: CheckConsistencyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.CheckConsistencyResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):checkConsistency"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.CheckConsistencyResponse.self, from: data)
-    }
-
-    public func snapshotTable(
-      request: SnapshotTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0):snapshot"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func getSnapshot(
-      request: GetSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Snapshot {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Snapshot.self, from: data)
-    }
-
-    public func listSnapshots(
-      request: ListSnapshotsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListSnapshotsResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/snapshots"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.ListSnapshotsResponse.self, from: data)
-    }
-
-    public func deleteSnapshot(
-      request: DeleteSnapshotRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "DELETE"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      _ = try await self.inner.rpc(for: req).get()
-    }
-
-    public func createBackup(
-      request: CreateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/backups"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.backupId, prefix: "backupId"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.backup {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func getBackup(
-      request: GetBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Backup {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Backup.self, from: data)
-    }
-
-    public func updateBackup(
-      request: UpdateBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Backup {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.backup.map({ $0.name }), !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.backup.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "PATCH"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.backup {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.Backup.self, from: data)
-    }
-
-    public func deleteBackup(
-      request: DeleteBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "DELETE"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      _ = try await self.inner.rpc(for: req).get()
-    }
-
-    public func listBackups(
-      request: ListBackupsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListBackupsResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/backups"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
-      query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
-      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
-      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "GET"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.ListBackupsResponse.self, from: data)
-    }
-
-    public func restoreTable(
-      request: RestoreTableRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/tables:restore"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func copyBackup(
-      request: CopyBackupRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)/backups:copy"
-      }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "POST"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      req.httpBody = try JSONEncoder().encode(request)
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
     }
 
     public func getIamPolicy(
@@ -864,24 +624,49 @@ extension Clients {
         GoogleIAMV1.TestIamPermissionsResponse.self, from: data)
     }
 
-    public func createSchemaBundle(
-      request: CreateSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
+    public func listHotTablets(
+      request: ListHotTabletsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/hotTablets"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.startTime, prefix: "startTime"))
+      query.append(contentsOf: try encoder.encode(request.endTime, prefix: "endTime"))
+      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.ListHotTabletsResponse.self, from: data)
+    }
+
+    public func createLogicalView(
+      request: CreateLogicalViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
         }
-        return "/v2/\(pathVariable0)/schemaBundles"
+        return "/v2/\(pathVariable0)/logicalViews"
       }()
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
       let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.schemaBundleId, prefix: "schemaBundleId"))
+      query.append(contentsOf: try encoder.encode(request.logicalViewId, prefix: "logicalViewId"))
       var req = try await self.inner.Request(path: path, query: query)
       req.httpMethod = "POST"
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.schemaBundle {
+      if let body = request.logicalView {
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.httpBody = try JSONEncoder().encode(body)
       }
@@ -890,38 +675,9 @@ extension Clients {
         GoogleLongRunning.Operation.self, from: data)
     }
 
-    public func updateSchemaBundle(
-      request: UpdateSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleLongRunning.Operation {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.schemaBundle.map({ $0.name }), !pathVariable0.isEmpty
-        else {
-          throw GoogleCloudGax.RequestError.binding(
-            "'request.schema_bundle.name' is not set or is empty")
-        }
-        return "/v2/\(pathVariable0)"
-      }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax.QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      query.append(contentsOf: try encoder.encode(request.ignoreWarnings, prefix: "ignoreWarnings"))
-      var req = try await self.inner.Request(path: path, query: query)
-      req.httpMethod = "PATCH"
-      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
-      if let body = request.schemaBundle {
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONEncoder().encode(body)
-      }
-      let (data, _) = try await self.inner.rpc(for: req).get()
-      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleLongRunning.Operation.self, from: data)
-    }
-
-    public func getSchemaBundle(
-      request: GetSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.SchemaBundle {
+    public func getLogicalView(
+      request: GetLogicalViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.LogicalView {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -936,17 +692,17 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.SchemaBundle.self, from: data)
+        GoogleCloudBigtableAdminV2.LogicalView.self, from: data)
     }
 
-    public func listSchemaBundles(
-      request: ListSchemaBundlesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListSchemaBundlesResponse {
+    public func listLogicalViews(
+      request: ListLogicalViewsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
         }
-        return "/v2/\(pathVariable0)/schemaBundles"
+        return "/v2/\(pathVariable0)/logicalViews"
       }()
       var query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
@@ -959,11 +715,157 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleBigtableAdminV2.ListSchemaBundlesResponse.self, from: data)
+        GoogleCloudBigtableAdminV2.ListLogicalViewsResponse.self, from: data)
     }
 
-    public func deleteSchemaBundle(
-      request: DeleteSchemaBundleRequest, options: GoogleCloudGax.RequestOptions
+    public func updateLogicalView(
+      request: UpdateLogicalViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.logicalView.map({ $0.name }), !pathVariable0.isEmpty
+        else {
+          throw GoogleCloudGax.RequestError.binding(
+            "'request.logical_view.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "PATCH"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.logicalView {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func deleteLogicalView(
+      request: DeleteLogicalViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "DELETE"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      _ = try await self.inner.rpc(for: req).get()
+    }
+
+    public func createMaterializedView(
+      request: CreateMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/materializedViews"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(
+        contentsOf: try encoder.encode(request.materializedViewId, prefix: "materializedViewId"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "POST"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.materializedView {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func getMaterializedView(
+      request: GetMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.MaterializedView.self, from: data)
+    }
+
+    public func listMaterializedViews(
+      request: ListMaterializedViewsRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/materializedViews"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "GET"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse.self, from: data)
+    }
+
+    public func updateMaterializedView(
+      request: UpdateMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.materializedView.map({ $0.name }), !pathVariable0.isEmpty
+        else {
+          throw GoogleCloudGax.RequestError.binding(
+            "'request.materialized_view.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax.QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.Request(path: path, query: query)
+      req.httpMethod = "PATCH"
+      req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
+      if let body = request.materializedView {
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try JSONEncoder().encode(body)
+      }
+      let (data, _) = try await self.inner.rpc(for: req).get()
+      return try GoogleCloudWkt._ProtoJSONDecoder().decode(
+        GoogleLongRunning.Operation.self, from: data)
+    }
+
+    public func deleteMaterializedView(
+      request: DeleteMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {

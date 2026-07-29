@@ -76,14 +76,14 @@ extension Clients {
 
     public func getInstance(
       request: GetInstanceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Instance {
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance {
       try await self._intercept(
         request: request,
         options: options,
         name: "getInstance",
         action: {
           (r: GetInstanceRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.Instance
+            -> GoogleCloudBigtableAdminV2.Instance
           in
           return try await self.inner.getInstance(request: r, options: o)
         })
@@ -91,14 +91,14 @@ extension Clients {
 
     public func listInstances(
       request: ListInstancesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListInstancesResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listInstances",
         action: {
           (r: ListInstancesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListInstancesResponse
+            -> GoogleCloudBigtableAdminV2.ListInstancesResponse
           in
           return try await self.inner.listInstances(request: r, options: o)
         })
@@ -106,14 +106,14 @@ extension Clients {
 
     public func updateInstance(
       request: Instance, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Instance {
+    ) async throws -> GoogleCloudBigtableAdminV2.Instance {
       try await self._intercept(
         request: request,
         options: options,
         name: "updateInstance",
         action: {
           (r: Instance, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.Instance
+            -> GoogleCloudBigtableAdminV2.Instance
           in
           return try await self.inner.updateInstance(request: r, options: o)
         })
@@ -164,14 +164,14 @@ extension Clients {
 
     public func getCluster(
       request: GetClusterRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.Cluster {
+    ) async throws -> GoogleCloudBigtableAdminV2.Cluster {
       try await self._intercept(
         request: request,
         options: options,
         name: "getCluster",
         action: {
           (r: GetClusterRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.Cluster
+            -> GoogleCloudBigtableAdminV2.Cluster
           in
           return try await self.inner.getCluster(request: r, options: o)
         })
@@ -179,14 +179,14 @@ extension Clients {
 
     public func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListClustersResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listClusters",
         action: {
           (r: ListClustersRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListClustersResponse
+            -> GoogleCloudBigtableAdminV2.ListClustersResponse
           in
           return try await self.inner.listClusters(request: r, options: o)
         })
@@ -236,14 +236,14 @@ extension Clients {
 
     public func createAppProfile(
       request: CreateAppProfileRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.AppProfile {
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
       try await self._intercept(
         request: request,
         options: options,
         name: "createAppProfile",
         action: {
           (r: CreateAppProfileRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.AppProfile
+            -> GoogleCloudBigtableAdminV2.AppProfile
           in
           return try await self.inner.createAppProfile(request: r, options: o)
         })
@@ -251,14 +251,14 @@ extension Clients {
 
     public func getAppProfile(
       request: GetAppProfileRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.AppProfile {
+    ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
       try await self._intercept(
         request: request,
         options: options,
         name: "getAppProfile",
         action: {
           (r: GetAppProfileRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.AppProfile
+            -> GoogleCloudBigtableAdminV2.AppProfile
           in
           return try await self.inner.getAppProfile(request: r, options: o)
         })
@@ -266,14 +266,14 @@ extension Clients {
 
     public func listAppProfiles(
       request: ListAppProfilesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListAppProfilesResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listAppProfiles",
         action: {
           (r: ListAppProfilesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListAppProfilesResponse
+            -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse
           in
           return try await self.inner.listAppProfiles(request: r, options: o)
         })
@@ -354,14 +354,14 @@ extension Clients {
 
     public func listHotTablets(
       request: ListHotTabletsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListHotTabletsResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listHotTablets",
         action: {
           (r: ListHotTabletsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListHotTabletsResponse
+            -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse
           in
           return try await self.inner.listHotTablets(request: r, options: o)
         })
@@ -384,14 +384,14 @@ extension Clients {
 
     public func getLogicalView(
       request: GetLogicalViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.LogicalView {
+    ) async throws -> GoogleCloudBigtableAdminV2.LogicalView {
       try await self._intercept(
         request: request,
         options: options,
         name: "getLogicalView",
         action: {
           (r: GetLogicalViewRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.LogicalView
+            -> GoogleCloudBigtableAdminV2.LogicalView
           in
           return try await self.inner.getLogicalView(request: r, options: o)
         })
@@ -399,14 +399,14 @@ extension Clients {
 
     public func listLogicalViews(
       request: ListLogicalViewsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListLogicalViewsResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listLogicalViews",
         action: {
           (r: ListLogicalViewsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListLogicalViewsResponse
+            -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse
           in
           return try await self.inner.listLogicalViews(request: r, options: o)
         })
@@ -457,14 +457,14 @@ extension Clients {
 
     public func getMaterializedView(
       request: GetMaterializedViewRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.MaterializedView {
+    ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView {
       try await self._intercept(
         request: request,
         options: options,
         name: "getMaterializedView",
         action: {
           (r: GetMaterializedViewRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.MaterializedView
+            -> GoogleCloudBigtableAdminV2.MaterializedView
           in
           return try await self.inner.getMaterializedView(request: r, options: o)
         })
@@ -472,14 +472,14 @@ extension Clients {
 
     public func listMaterializedViews(
       request: ListMaterializedViewsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleBigtableAdminV2.ListMaterializedViewsResponse {
+    ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse {
       try await self._intercept(
         request: request,
         options: options,
         name: "listMaterializedViews",
         action: {
           (r: ListMaterializedViewsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleBigtableAdminV2.ListMaterializedViewsResponse
+            -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse
           in
           return try await self.inner.listMaterializedViews(request: r, options: o)
         })
