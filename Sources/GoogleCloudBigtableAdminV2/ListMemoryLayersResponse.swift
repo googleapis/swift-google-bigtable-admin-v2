@@ -15,32 +15,31 @@
 // limitations under the License.
 
 import Foundation
+@_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Represents a collection of protobuf schemas.
-public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Response message for BigtableInstanceAdmin.ListMemoryLayers.
+public struct ListMemoryLayersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
+  GoogleGax._PaginatedResponse,
   Sendable
 {
-  /// Required. Contains a protobuf-serialized
-  /// [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto),
-  /// which could include multiple proto files.
-  /// To generate it, [install](https://grpc.io/docs/protoc-installation/) and
-  /// run `protoc` with
-  /// `--include_imports` and `--descriptor_set_out`. For example, to generate
-  /// for moon/shot/app.proto, run
-  /// ```
-  /// $protoc  --proto_path=/app_path --proto_path=/lib_path \
-  ///          --include_imports \
-  ///          --descriptor_set_out=descriptors.pb \
-  ///          moon/shot/app.proto
-  /// ```
-  /// For more details, see protobuffer [self
-  /// description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
-  public var protoDescriptors: Foundation.Data = Foundation.Data()
+  /// The list of requested memory layers.
+  public var memoryLayers: [MemoryLayer] = []
+
+  /// Locations from which MemoryLayer information could not be retrieved,
+  /// due to an outage or some other transient condition.
+  /// MemoryLayers from these locations may be missing from `memory_layers`,
+  /// or may only have partial information returned.
+  /// Values are of the form `projects/<project>/locations/<zone_id>`
+  public var failedLocations: [Swift.String] = []
+
+  /// A token, which can be sent as `page_token` to retrieve the next page.
+  /// If this field is omitted, there are no subsequent pages.
+  public var nextPageToken: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `ProtoSchema`.
+  /// Initialize a new instance of `ListMemoryLayersResponse`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +47,7 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ProtoSchema().with { $0.protoDescriptors = ... }
+  /// let value = ListMemoryLayersResponse().with { $0.memoryLayers = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -62,17 +61,27 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let protoDescriptors = CodingKeys(stringValue: "protoDescriptors")
+    static let memoryLayers = CodingKeys(stringValue: "memoryLayers")
+    static let failedLocations = CodingKeys(stringValue: "failedLocations")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
 
     static let _knownKeys: Set<Swift.String> = [
-      "protoDescriptors"
+      "memoryLayers",
+      "failedLocations",
+      "nextPageToken",
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .protoDescriptors) {
-      self.protoDescriptors = value
+    if let value = try container.decodeIfPresent([MemoryLayer].self, forKey: .memoryLayers) {
+      self.memoryLayers = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedLocations) {
+      self.failedLocations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -82,19 +91,29 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.protoDescriptors, forKey: .protoDescriptors)
+    try container.encode(self.memoryLayers, forKey: .memoryLayers)
+    try container.encode(self.failedLocations, forKey: .failedLocations)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.bigtable.admin.v2.ProtoSchema"
+    return "type.googleapis.com/google.bigtable.admin.v2.ListMemoryLayersResponse"
   }
   public init(fromAny any: GoogleWKT.`Any`) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
   public func _pack() throws -> GoogleWKT.Struct {
     return try GoogleWKT._slowAnySerialize(message: self)
+  }
+
+  public func _getPaginatedItems() -> [MemoryLayer] {
+    return self.memoryLayers
+  }
+
+  public func _nextPageToken() -> Swift.String {
+    return self.nextPageToken
   }
 }

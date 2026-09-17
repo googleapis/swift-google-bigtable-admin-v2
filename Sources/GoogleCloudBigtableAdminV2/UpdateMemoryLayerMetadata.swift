@@ -17,30 +17,23 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Represents a collection of protobuf schemas.
-public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
+/// The metadata for the Operation returned by UpdateMemoryLayer.
+public struct UpdateMemoryLayerMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. Contains a protobuf-serialized
-  /// [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto),
-  /// which could include multiple proto files.
-  /// To generate it, [install](https://grpc.io/docs/protoc-installation/) and
-  /// run `protoc` with
-  /// `--include_imports` and `--descriptor_set_out`. For example, to generate
-  /// for moon/shot/app.proto, run
-  /// ```
-  /// $protoc  --proto_path=/app_path --proto_path=/lib_path \
-  ///          --include_imports \
-  ///          --descriptor_set_out=descriptors.pb \
-  ///          moon/shot/app.proto
-  /// ```
-  /// For more details, see protobuffer [self
-  /// description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
-  public var protoDescriptors: Foundation.Data = Foundation.Data()
+  /// The request that prompted the initiation of this UpdateMemoryLayer
+  /// operation.
+  public var originalRequest: UpdateMemoryLayerRequest? = nil
+
+  /// The time at which the original request was received.
+  public var requestTime: GoogleWKT.Timestamp? = nil
+
+  /// The time at which the operation failed or was completed successfully.
+  public var finishTime: GoogleWKT.Timestamp? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `ProtoSchema`.
+  /// Initialize a new instance of `UpdateMemoryLayerMetadata`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +41,7 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ProtoSchema().with { $0.protoDescriptors = ... }
+  /// let value = UpdateMemoryLayerMetadata().with { $0.originalRequest = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -62,18 +55,23 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let protoDescriptors = CodingKeys(stringValue: "protoDescriptors")
+    static let originalRequest = CodingKeys(stringValue: "originalRequest")
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let finishTime = CodingKeys(stringValue: "finishTime")
 
     static let _knownKeys: Set<Swift.String> = [
-      "protoDescriptors"
+      "originalRequest",
+      "requestTime",
+      "finishTime",
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .protoDescriptors) {
-      self.protoDescriptors = value
-    }
+    self.originalRequest = try container.decodeIfPresent(
+      UpdateMemoryLayerRequest.self, forKey: .originalRequest)
+    self.requestTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .requestTime)
+    self.finishTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .finishTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -82,14 +80,16 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.protoDescriptors, forKey: .protoDescriptors)
+    try container.encodeIfPresent(self.originalRequest, forKey: .originalRequest)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.bigtable.admin.v2.ProtoSchema"
+    return "type.googleapis.com/google.bigtable.admin.v2.UpdateMemoryLayerMetadata"
   }
   public init(fromAny any: GoogleWKT.`Any`) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

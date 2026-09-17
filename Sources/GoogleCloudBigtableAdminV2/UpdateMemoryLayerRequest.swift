@@ -17,30 +17,22 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Represents a collection of protobuf schemas.
-public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Request message for BigtableInstanceAdmin.UpdateMemoryLayer.
+public struct UpdateMemoryLayerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. Contains a protobuf-serialized
-  /// [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto),
-  /// which could include multiple proto files.
-  /// To generate it, [install](https://grpc.io/docs/protoc-installation/) and
-  /// run `protoc` with
-  /// `--include_imports` and `--descriptor_set_out`. For example, to generate
-  /// for moon/shot/app.proto, run
-  /// ```
-  /// $protoc  --proto_path=/app_path --proto_path=/lib_path \
-  ///          --include_imports \
-  ///          --descriptor_set_out=descriptors.pb \
-  ///          moon/shot/app.proto
-  /// ```
-  /// For more details, see protobuffer [self
-  /// description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
-  public var protoDescriptors: Foundation.Data = Foundation.Data()
+  /// Required. The memory layer to update.
+  ///
+  /// The memory layer's `name` format is as follows:
+  /// `projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer`.
+  public var memoryLayer: MemoryLayer? = nil
+
+  /// Optional. The list of fields to update.
+  public var updateMask: GoogleWKT.FieldMask? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `ProtoSchema`.
+  /// Initialize a new instance of `UpdateMemoryLayerRequest`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +40,7 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ProtoSchema().with { $0.protoDescriptors = ... }
+  /// let value = UpdateMemoryLayerRequest().with { $0.memoryLayer = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -62,18 +54,19 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let protoDescriptors = CodingKeys(stringValue: "protoDescriptors")
+    static let memoryLayer = CodingKeys(stringValue: "memoryLayer")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
 
     static let _knownKeys: Set<Swift.String> = [
-      "protoDescriptors"
+      "memoryLayer",
+      "updateMask",
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .protoDescriptors) {
-      self.protoDescriptors = value
-    }
+    self.memoryLayer = try container.decodeIfPresent(MemoryLayer.self, forKey: .memoryLayer)
+    self.updateMask = try container.decodeIfPresent(GoogleWKT.FieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.Value.self, forKey: key)
@@ -82,14 +75,15 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.protoDescriptors, forKey: .protoDescriptors)
+    try container.encodeIfPresent(self.memoryLayer, forKey: .memoryLayer)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.bigtable.admin.v2.ProtoSchema"
+    return "type.googleapis.com/google.bigtable.admin.v2.UpdateMemoryLayerRequest"
   }
   public init(fromAny any: GoogleWKT.`Any`) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

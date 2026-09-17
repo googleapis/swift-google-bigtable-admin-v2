@@ -23,17 +23,21 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
-func sample(projectId: String, instanceId: String, clusterId: String, ) async throws {
-  let client = try GoogleCloudBigtableAdminV2.BigtableInstanceAdminClient()
-  let items = try client.listMemoryLayers(
-    byItem: ListMemoryLayersRequest()
+func sample(
+  client: BigtableInstanceAdminClient, projectId: String, instanceId: String, clusterId: String
+) async throws {
+  let poller = try await client.updateMemoryLayer(
+    withPolling: UpdateMemoryLayerRequest()
       .with {
-        $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
+        $0.memoryLayer = MemoryLayer().with {
+          $0.name =
+            "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)/memoryLayer"
+        }
+        $0.updateMask = GoogleWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  for try await item in items {
-    print("  \(item)")
-  }
+  let response = try await poller.wait()
+  print("Success: \(response)")
 }
 // snippet.hide
 
@@ -41,8 +45,10 @@ func sample(projectId: String, instanceId: String, clusterId: String, ) async th
 struct SnippetRunner {
   static func main() async throws {
     do {
+      let client = try GoogleCloudBigtableAdminV2.BigtableInstanceAdminClient()
       try await sample(
-        projectId: "[placeholder]", instanceId: "[placeholder]", clusterId: "[placeholder]", )
+        client: client, projectId: "[placeholder]", instanceId: "[placeholder]",
+        clusterId: "[placeholder]")
     } catch {
       print("Error: \(error)")
     }

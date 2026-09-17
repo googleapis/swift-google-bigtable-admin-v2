@@ -17,30 +17,31 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Represents a collection of protobuf schemas.
-public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Request message for BigtableInstanceAdmin.ListMemoryLayers.
+public struct ListMemoryLayersRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. Contains a protobuf-serialized
-  /// [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto),
-  /// which could include multiple proto files.
-  /// To generate it, [install](https://grpc.io/docs/protoc-installation/) and
-  /// run `protoc` with
-  /// `--include_imports` and `--descriptor_set_out`. For example, to generate
-  /// for moon/shot/app.proto, run
-  /// ```
-  /// $protoc  --proto_path=/app_path --proto_path=/lib_path \
-  ///          --include_imports \
-  ///          --descriptor_set_out=descriptors.pb \
-  ///          moon/shot/app.proto
-  /// ```
-  /// For more details, see protobuffer [self
-  /// description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
-  public var protoDescriptors: Foundation.Data = Foundation.Data()
+  /// Required. The unique name of the cluster for which a list of memory layers
+  /// is requested. Values are of the form
+  /// `projects/{project}/instances/{instance}/clusters/{cluster}`.
+  /// Use `{cluster} = '-'` to list MemoryLayers for all Clusters in an instance,
+  /// e.g., `projects/myproject/instances/myinstance/clusters/-`.
+  public var parent: Swift.String = Swift.String()
+
+  /// Optional. The maximum number of memory layers to return. The service may
+  /// return fewer than this value.
+  public var pageSize: Swift.Int32 = Swift.Int32()
+
+  /// Optional. A page token, received from a previous `ListMemoryLayers` call.
+  /// Provide this to retrieve the subsequent page.
+  ///
+  /// When paginating, all other parameters provided to `ListMemoryLayers`
+  /// must match the call that provided the page token.
+  public var pageToken: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `ProtoSchema`.
+  /// Initialize a new instance of `ListMemoryLayersRequest`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -48,7 +49,7 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ProtoSchema().with { $0.protoDescriptors = ... }
+  /// let value = ListMemoryLayersRequest().with { $0.parent = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -62,17 +63,27 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let protoDescriptors = CodingKeys(stringValue: "protoDescriptors")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
 
     static let _knownKeys: Set<Swift.String> = [
-      "protoDescriptors"
+      "parent",
+      "pageSize",
+      "pageToken",
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .protoDescriptors) {
-      self.protoDescriptors = value
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -82,14 +93,16 @@ public struct ProtoSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.protoDescriptors, forKey: .protoDescriptors)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.bigtable.admin.v2.ProtoSchema"
+    return "type.googleapis.com/google.bigtable.admin.v2.ListMemoryLayersRequest"
   }
   public init(fromAny any: GoogleWKT.`Any`) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
